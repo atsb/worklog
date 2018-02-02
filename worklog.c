@@ -617,6 +617,8 @@ int clock_on(int key)
       timer_value.it_interval.tv_usec=0;
       setitimer(ITIMER_REAL,&timer_value,0);
       update_skip_refresh=0;
+      // compensate for extra time about to be added incorrectly
+      project->time-=1;
       alarm_handler(0);
       mvaddstr(y_update,1,"  ");
     }
