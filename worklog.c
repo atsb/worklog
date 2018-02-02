@@ -253,12 +253,12 @@ void alarm_handler(int flag)
     {
       delta_time=project_update->time-initial_time;
       seconds=(double) delta_time;
-      if(seconds<60.0)
+      if(abs(seconds)<60.0)
 	sprintf(temps,"%0.2f seconds",seconds);
       else
 	{
 	  minutes=seconds / 60.0;
-	  if(minutes<60.0)
+	  if(abs(minutes)<60.0)
 	    sprintf(temps,"%0.2f minutes",minutes);
 	  else
 	    {
@@ -270,12 +270,12 @@ void alarm_handler(int flag)
       if(project_update!=no_category)
 	{
 	  seconds=(double) project_update->time;
-	  if(seconds<60.0)
+	  if(abs(seconds)<60.0)
 	    sprintf(temps2,"  (total %0.2f seconds)",seconds);
 	  else
 	    {
 	      minutes=seconds / 60.0;
-	      if(minutes<60.0)
+	      if(abs(minutes)<60.0)
 		sprintf(temps2,"  (total %0.2f minutes)",minutes);
 	      else
 		{
@@ -338,16 +338,17 @@ void exit_handler(int flag)
     }
 
   fprintf(f,"-- Worklog summary begins : %s --\n",starttimes);
-  for(project=project_head;project!=NULL;project=project->next)
-    if(project->time>0)
-      {
+    for(project=project_head;project!=NULL;project=project->next)
+    {
+        if(!seconds)
+            continue;
 	seconds=(double) project->time;
-	if(seconds<60.0)
+	if(abs(seconds)<60.0)
 	  sprintf(temps,"%0.2f seconds",seconds);
 	else
 	  {
 	    minutes=seconds / 60.0;
-	    if(minutes<60.0)
+	    if(abs(minutes)<60.0)
 	      sprintf(temps,"%0.2f minutes",minutes);
 	    else
 	      {
@@ -583,15 +584,13 @@ int clock_on(int key)
 	    }
 	  else
 	    fprintf(fa,"<no description>");
-	  if(delta_time>0)
-	    {
 	      seconds=(double) delta_time;
-	      if(seconds<60.0)
+	      if(abs(seconds)<60.0)
 		sprintf(temps,"%0.2f seconds",seconds);
 	      else
 		{
 		  minutes=seconds / 60.0;
-		  if(minutes<60.0)
+		  if(abs(minutes)<60.0)
 		    sprintf(temps,"%0.2f minutes",minutes);
 		  else
 		    {
@@ -599,7 +598,6 @@ int clock_on(int key)
 		      sprintf(temps,"%0.2f hours",hours);
 		    }
 		}
-	    }
 	  fprintf(f,": %s : finished ",temps);
 	  fprintf(fa," : [%s] : finished ",temps);
 	  time(&t);
