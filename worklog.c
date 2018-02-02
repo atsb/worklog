@@ -103,12 +103,12 @@ void read_config_file(char *filename)
       perror("fopen");
       exit(-1);
     }
-  while(!feof(f))
+  while(!feof(f) && !ferror(f))
     {
       linenum++;
-      for(firstchar=0;!feof(f) && firstchar<=13;)
+      for(firstchar=0;!feof(f) && !ferror(f) && firstchar<=13;)
 	fscanf(f,"%c",&firstchar);
-      if(!feof(f))
+      if(!feof(f) && !ferror(f))
 	{
 	  if(firstchar=='#')
 	    {
@@ -133,10 +133,16 @@ void read_config_file(char *filename)
 	      project->name=(char *)malloc(1+strlen(names));
 	      sprintf(project->name,"%s",names);
 	      num_projects++;
+	        }
 	    }
-	}
     }
-  fclose(f);
+    if (ferror(f))
+    {
+        fprintf(stderr,"ERROR: cannot read project configuration file : %s\n",filename);
+        perror("fscanf");        
+        exit(-1);
+    }
+fclose(f);
 }
 
 /* there are multiple interpretations of what the "Del" key is */
@@ -568,8 +574,8 @@ int clock_on(int key)
 	      do_resize();
 	      break;;;
 	    default :
-              if(isdelkey(keypress) || (key==CR))
-                quit=1;  /* fall back to main loop */
+	        beep();
+	        quit=1; 
 	      break;
 	    }
 	}
