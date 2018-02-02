@@ -451,7 +451,7 @@ int clock_on(int key)
 	{
 	  update_skip_refresh=0;
 	  nodelay(stdscr,TRUE);
-	  for(keypress=ERR;keypress==ERR;usleep(1000))
+	  for(keypress=ERR;keypress==ERR;usleep(100000))
 	    keypress=mvgetch(IDLE_Y,IDLE_X);
 	  update_skip_refresh=1;
 	  nodelay(stdscr,FALSE);
