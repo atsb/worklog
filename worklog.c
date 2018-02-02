@@ -33,7 +33,7 @@ long fetch_total_time(struct project_list *project)
   char line[STRLEN];
   FILE *fa;
   char timetype[STRLEN];
-
+  
   result=0.0;
   sprintf(specific_timefile,"%s.%c",log_filename,project->key);
   fa=fopen(specific_timefile,"r");
@@ -55,7 +55,7 @@ long fetch_total_time(struct project_list *project)
             // [Jon Daley: 2009-09-25] make file parsing more accurate
             // by using the amounts within the brackets, rather than
             // the (rounded) amounts at the beginning of the line
-            if(2==sscanf(line,"%*[^[][%lf %s :",&partial, &timetype))
+            if(2==sscanf(line,"%*[^[][%lf %s :",&partial, timetype))
             {
                 if(strcmp(timetype, "hours]") == 0)
                     result+=(long) rint(partial*60.0*60.0) ;
