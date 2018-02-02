@@ -32,6 +32,7 @@ long fetch_total_time(struct project_list *project)
   char specific_timefile[STRLEN];
   char line[STRLEN];
   FILE *fa;
+  char timetype[STRLEN];
 
   result=0.0;
   sprintf(specific_timefile,"%s.%c",log_filename,project->key);
@@ -48,11 +49,29 @@ long fetch_total_time(struct project_list *project)
     }
   else
     {
-      for(;1==fscanf(fa,"%[^\n]",line);
+        for(;1==fscanf(fa,"%[^\n]",line);
       	fscanf(fa,"\n"))
-	if(1==sscanf(line,"%lf hours :",&partial))
-	  result+=(long) rint(partial*60.0*60.0);
-    }
+      	{
+            // [Jon Daley: 2009-09-25] make file parsing more accurate
+            // by using the amounts within the brackets, rather than
+            // the (rounded) amounts at the beginning of the line
+            if(2==sscanf(line,"%*[^[][%lf %s :",&partial, &timetype))
+            {
+                if(strcmp(timetype, "hours]") == 0)
+                    result+=(long) rint(partial*60.0*60.0) ;
+                else if(strcmp(timetype, "minutes]") == 0)
+                    result+=(long) rint(partial*60.0) ;
+                else if(strcmp(timetype, "seconds]") == 0)
+                    result+=(long) rint(partial) ;
+                else
+                    printf("Couldn't find timetype: %s, %s\n", line, timetype);
+            }
+            else
+            {
+                printf("Couldn't find timestamp: %s\n", line);
+            }
+        }
+     }
   fclose(fa);
 
   return(result);
