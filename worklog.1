@@ -1,0 +1,50 @@
+.TH WORKLOG 1
+.SH NAME
+worklog \-  a program for keeping track of time spent on different projects
+.SH SYNOPSIS
+.B worklog
+[<project config file> [<log file>]]
+.SH DESCRIPTION
+.I  worklog
+is a program that helps you keep track of your time.
+.I  worklog
+is a simple ncurses based based program that runs a clock and logs
+time to a logfile.  When
+.I worklog
+is invoked, it reads the project configuration file, and periodically
+appends to the log file throughout the extent of its run.
+Individual logfiles are also kept on a per\-project basis.
+The key of each project is used to construct a separate log file
+made unique by appending .X to the name of the main log file
+where X is the key character.  Press Control-L to redraw the
+screen (sometimes useful when resizing the window).
+
+
+.SH THE PROJECT CONFIGURATION FILE
+The
+.I project configuration file
+is a text file containing a project and its associated key-character
+on seperate lines.  The format of a project line is :
+
+.B <key>:<name>
+
+Comments may be preceded by the # character
+
+.SH EXAMPLE PROJECT CONFIGURATION FILE
+.br
+.nf
+# Worklog project file
+# note that projects appear in Worklog in REVERSE order
+
+B:BOWER consultation
+L:LIS consultation
+R:Research
+D:DEC system administration
+P:Problems email
+S:Sugar administration
+r:Reading NetNews
+.SH AUTHOR
+.I worklog
+was written by Truxton King Fulton II
+.SH BUGS
+If you find one, please report it to trux@truxton.com
