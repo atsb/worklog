@@ -1,5 +1,5 @@
 VERSION = 1.9
-CFLAGS=-O2 -DVERSIONS=\"${VERSION}\" -D_FORTIFY_SOURCE=2 -g -Wall -Wextra -Wpointer-arith -Wuninitialized -Wshadow -Winit-self -Wmissing-declarations -Wformat -Wformat-security -Werror=format-security -I/home/bilbada/Documents/libcurses -L/home/bilbada/Documents/libcurses
+CFLAGS=-O2 -DVERSIONS=\"${VERSION}\" -D_FORTIFY_SOURCE=2 -g -Wall -Wextra -Wpointer-arith -Wuninitialized -Wshadow -Winit-self -Wmissing-declarations -Wformat -Wformat-security -Werror=format-security
 LIBS=-lncurses -lm -z now
 BIN=/usr/local/bin
 MAN=/usr/local/man
