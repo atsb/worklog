@@ -1,4 +1,4 @@
-#define DEFAULT_LOG_FILE    ".worklog_time.log"
+#define DEFAULT_LOG_FILE    "worklog_time.log"
 #define DEFAULT_CONFIG_FILE "projects"
 
 #define STRLEN 2048
