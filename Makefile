@@ -7,9 +7,8 @@ MAN=$(DESTDIR)/usr/share/man/man1
 # uncomment this to allow use of an environment variable to specify the
 # default working directory where default log and project files are located
 # and they can be #defined as relative paths in worklog.c
-# DEFAULT_DIR_ENVVAR=HOME
-
-DEFAULT_DIR_ENVVAR=WORKLOGDIR
+DEFAULT_DIR_ENVVAR=HOME
+#DEFAULT_DIR_ENVVAR=WORKLOGDIR
 USE_ENV_DIR=-DDEFAULT_DIR_ENVVAR=\"$(DEFAULT_DIR_ENVVAR)\"
 
 
