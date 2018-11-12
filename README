@@ -1,5 +1,4 @@
-			 Worklog version 1.9
-			 -------------------
+[![Build Status](https://travis-ci.org/atsb/worklog.svg?branch=master)](https://travis-ci.org/atsb/worklog)
 
 INTRODUCTION
 ------------
@@ -12,7 +11,6 @@ timesheet file for every little segment of my time spent doing these
 tasks, I wanted to leave a clock running and indicate with one or two
 keystrokes the onset or change of any given task.  Worklog is a simple
 ncurses based program to do just that.
-
 
 INSTALLATION
 ------------
@@ -42,7 +40,6 @@ To test worklog with the example projects file :
 
 Then look at the time.log* files created.
 
-
 THE PROJECT CONFIGURATION FILE
 ------------------------------
 
@@ -66,7 +63,6 @@ made unique by appending .X to the main log filename, where X is the
 key character.  Usually keys are case-insensitive, however, if you
 have a key in upper AND lower case, case matters.
 
-
 RUNNING WORKLOG
 ---------------
 
@@ -76,7 +72,6 @@ alias wl='worklog $HOME/logs/worklog.projects $HOME/logs/worklog.time.log'
 You should be able to resize your xterm and have worklog automatically
 adapt to the new scren size, however xterm sometimes does not send
 SIGWINCH so it may be necessary to force a redraw by pressing control-L.
-
 
 MISCELLANY
 ----------
