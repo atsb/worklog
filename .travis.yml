@@ -6,4 +6,4 @@ before_install:
   - sudo apt-get install -y libncurses-dev
 script:
   - make
-  - ./worklog
+  - ./worklog projects
