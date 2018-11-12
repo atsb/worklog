@@ -1,0 +1,7 @@
+language: c
+compiler: gcc
+os: linux
+install: libncurses-dev
+script:
+  - make
+  - ./worklog
