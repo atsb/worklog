@@ -1,7 +1,9 @@
 language: c
 compiler: gcc
 os: linux
-install: libncurses-dev
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y libncurses-dev
 script:
   - make
   - ./worklog
