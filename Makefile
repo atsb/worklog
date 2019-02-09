@@ -1,4 +1,4 @@
-VERSION = 1.9
+VERSION = 2.0
 CFLAGS=-DVERSIONS=\"${VERSION}\" -D_FORTIFY_SOURCE=2 -g -Wall -Wextra -Wpointer-arith -Wuninitialized -Wshadow -Winit-self -Wmissing-declarations -Wformat -Wformat-security -Werror=format-security
 LIBS=-lncurses -lm -z now
 BIN=$(DESTDIR)/usr/bin

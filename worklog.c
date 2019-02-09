@@ -206,9 +206,7 @@ void draw_main_screen()
 
 void draw_run_options(int key)
 {
-  int i, j;
-
-  j=strlen(current_project->name)+10;
+  int i;
   attron(A_BOLD);
   mvaddstr(y_update,1,"->");
   attroff(A_BOLD);
@@ -278,12 +276,12 @@ void alarm_handler(int flag)
     {
       delta_time=project_update->time-initial_time;
       seconds=(double) delta_time;
-      if(abs(seconds)<60.0)
+      if(fabs(seconds)<60.0)
 	sprintf(temps,"%0.2f seconds",seconds);
       else
 	{
 	  minutes=seconds / 60.0;
-	  if(abs(minutes)<60.0)
+	  if(fabs(minutes)<60.0)
 	    sprintf(temps,"%0.2f minutes",minutes);
 	  else
 	    {
@@ -295,12 +293,12 @@ void alarm_handler(int flag)
       if(project_update!=no_category)
 	{
 	  seconds=(double) project_update->time;
-	  if(abs(seconds)<60.0)
+	  if(fabs(seconds)<60.0)
 	    sprintf(temps2,"  (total %0.2f seconds)",seconds);
 	  else
 	    {
 	      minutes=seconds / 60.0;
-	      if(abs(minutes)<60.0)
+	      if(fabs(minutes)<60.0)
 		sprintf(temps2,"  (total %0.2f minutes)",minutes);
 	      else
 		{
@@ -368,12 +366,12 @@ void exit_handler(int flag)
         if(!seconds)
             continue;
 	seconds=(double) project->time;
-	if(abs(seconds)<60.0)
+	if(fabs(seconds)<60.0)
 	  sprintf(temps,"%0.2f seconds",seconds);
 	else
 	  {
 	    minutes=seconds / 60.0;
-	    if(abs(minutes)<60.0)
+	    if(fabs(minutes)<60.0)
 	      sprintf(temps,"%0.2f minutes",minutes);
 	    else
 	      {
@@ -610,12 +608,12 @@ int clock_on(int key)
 	  else
 	    fprintf(fa,"<no description>");
 	      seconds=(double) delta_time;
-	      if(abs(seconds)<60.0)
+	      if(fabs(seconds)<60.0)
 		sprintf(temps,"%0.2f seconds",seconds);
 	      else
 		{
 		  minutes=seconds / 60.0;
-		  if(abs(minutes)<60.0)
+		  if(fabs(minutes)<60.0)
 		    sprintf(temps,"%0.2f minutes",minutes);
 		  else
 		    {
