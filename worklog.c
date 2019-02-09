@@ -2,7 +2,6 @@
 /* program for tracking time spent on different projects */
 /* Truxton Fulton */
 /* March 27, 1995 */
-/* gcc worklog.c -lncurses -o worklog */
 
 /* Thanks to :
      Tim Newsome <drz@cybercomm.net> (25 Dec 1995)
