@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/atsb/worklog.svg?branch=master)](https://travis-ci.org/atsb/worklog)
+
 INTRODUCTION
 ------------
 

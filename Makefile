@@ -1,5 +1,5 @@
-VERSION = 2.0
-CFLAGS=-DVERSIONS=\"${VERSION}\" -D_FORTIFY_SOURCE=2 -g -Wall -Wextra -Wpointer-arith -Wuninitialized -Wshadow -Winit-self -Wmissing-declarations -Wformat -Wformat-security -Werror=format-security
+VERSION = 2.1
+CFLAGS=-DVERSIONS=\"${VERSION}\" -D_FORTIFY_SOURCE=2 -O -Wall -Wformat -Wformat-security -Werror=format-security
 LIBS=-lncurses -lm -z now
 BIN=$(DESTDIR)/usr/bin
 MAN=$(DESTDIR)/usr/share/man/man1
@@ -12,16 +12,11 @@ DEFAULT_DIR_ENVVAR=HOME
 USE_ENV_DIR=-DDEFAULT_DIR_ENVVAR=\"$(DEFAULT_DIR_ENVVAR)\"
 
 
-all:	worklog Makefile
+all:	worklog
 
 install:	all
-	cp worklog $(BIN)/worklog
-	chmod a+rx $(BIN)/worklog
-	#cp worklog.1 $(MAN)/man1/worklog.1
-	#chmod a+r $(MAN)/man1/worklog.1
-
-install.zipman: install
-	#gzip $(MAN)/man1/worklog.1
+	install -D -m 0755 worklog $(BIN)/worklog
+	install -D -m 0644 worklog.1.gz $(MAN)/man1/worklog.1.gz
 
 worklog:	worklog.c Makefile
 	gcc $(CFLAGS) $(USE_ENV_DIR) worklog.c $(LIBS) -o worklog
@@ -29,10 +24,10 @@ worklog:	worklog.c Makefile
 clean:
 	rm -f worklog
 
-tar:
+dist:
 	- rm -rf worklog-${VERSION}
 	mkdir worklog-${VERSION}
-	cp Makefile README TODO worklog.c worklog.1 worklog.lsm projects worklog-${VERSION}
+	cp Makefile README TODO worklog.c worklog.1.gz worklog.lsm projects worklog-${VERSION}
 	cp worklog.lsm distr/worklog-${VERSION}.lsm
 	tar -clzvf distr/worklog-${VERSION}.tar.gz worklog-${VERSION}
 	- rm -rf worklog-${VERSION}
