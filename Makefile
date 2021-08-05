@@ -19,7 +19,7 @@ install:	all
 	install -D -m 0644 worklog.1.gz $(MAN)/man1/worklog.1.gz
 
 worklog:	worklog.c Makefile
-	gcc $(CFLAGS) $(USE_ENV_DIR) worklog.c $(LIBS) -o worklog
+	$(CC) $(CFLAGS) $(USE_ENV_DIR) worklog.c $(LIBS) -o worklog
 
 clean:
 	rm -f worklog
