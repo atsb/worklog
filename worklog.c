@@ -362,9 +362,9 @@ void exit_handler(int flag)
   fprintf(f,"-- Worklog summary begins : %s --\n",starttimes);
     for(project=project_head;project!=NULL;project=project->next)
     {
-        if(!seconds)
-            continue;
 	seconds=(double) project->time;
+    if(!seconds)
+        continue;
 	if(fabs(seconds)<60.0)
 	  sprintf(temps,"%0.2f seconds",seconds);
 	else
